@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div>
-      <a-progress strokeLinecap="square" :percent="75" />
-      <a-progress strokeLinecap="square" :percent="75" type="circle" />
-      <a-progress strokeLinecap="square" :percent="75" type="dashboard" />
+      <a-progress :percent="75" stroke-linecap="square" />
+      <a-progress :percent="75" stroke-linecap="square" type="circle" />
+      <a-progress :percent="75" stroke-linecap="square" type="dashboard" />
     </div>
     <div>
       <logo />
