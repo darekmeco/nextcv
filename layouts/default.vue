@@ -1,19 +1,7 @@
 <template>
   <a-layout id="components-layout-demo-responsive">
-    <a-layout-sider
-      @collapse="onCollapse"
-      @breakpoint="onBreakpoint"
-      breakpoint="lg"
-      collapsed-width="0"
-      width="300"
-    >
-      <a-card hoverable style="width: 240px">
-        <img
-          slot="cover"
-          alt="example"
-          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-        />
-      </a-card>
+    <a-layout-sider breakpoint="lg" collapsed-width="0" width="300">
+      <a-avatar src="https://picsum.photos/id/237/200/300" />
       <a-menu :defaultSelectedKeys="['4']" theme="dark" mode="inline">
         <a-menu-item key="1">
           <a-icon type="user" />
@@ -33,6 +21,7 @@
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
+
     <a-layout>
       <a-layout-header :style="{ background: '#fff', padding: 0 }" />
       <a-layout-content :style="{ margin: '24px 16px 0' }">

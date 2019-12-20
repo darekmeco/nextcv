@@ -1,16 +1,16 @@
 export default {
-  require: ['./test/ava.setup.js'],
-  sources: ['**/*.{js,vue}'],
+  require: ["./test/ava.setup.js"],
+  sources: ["**/*.{js,vue}"],
   babel: {
     testOptions: {
       plugins: [
         [
-          'module-resolver',
+          "module-resolver",
           {
-            root: ['.'],
+            root: ["."],
             alias: {
-              '@': '.',
-              '~': '.'
+              "@": ".",
+              "~": "."
             }
           }
         ]
@@ -19,4 +19,4 @@ export default {
   },
   tap: true,
   verbose: true
-}
+};
