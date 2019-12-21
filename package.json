@@ -19,10 +19,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "ant-design-vue": "^1.1.10",
-<<<<<<< HEAD
-=======
     "chart.js": "^2.9.3",
->>>>>>> 9f614469cfafb28e5092c4f765fe560af360e729
     "cross-env": "^5.2.0",
     "fastify": "^1.13.3",
     "nuxt": "^2.0.0"
