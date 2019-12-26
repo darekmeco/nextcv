@@ -18,7 +18,12 @@ module.exports = {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",
-        href: 'https://fonts.googleapis.com/css?family=Montserrat&display=swap'
+        href: "https://fonts.googleapis.com/css?family=Bitter&display=swap"
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&display=swap"
       }
     ]
   },
@@ -47,10 +52,23 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
+    "@nuxtjs/auth",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     // Doc: https://github.com/nuxt-community/dotenv-module
-    "@nuxtjs/dotenv"
+    "@nuxtjs/dotenv",
+    [
+      "nuxt-fontawesome",
+      {
+        component: "fa",
+        imports: [
+          {
+            set: "@fortawesome/free-solid-svg-icons",
+            icons: ["fas"]
+          }
+        ]
+      }
+    ]
   ],
   /*
    ** Axios module configuration
@@ -64,6 +82,13 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      config.resolve.alias.vue = "vue/dist/vue.common";
+      config.module.rules.push({
+        test: /\.html$/,
+        use: "vue-template-loader",
+        exclude: /app.template.html/
+      });
+    }
   }
 };

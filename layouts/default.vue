@@ -1,134 +1,252 @@
 <template>
   <a-layout id="components-layout-demo-top" class="layout">
+    <a-layout-header>
+      <a-row type="flex">
+        <a-col :span="2" :order="1">
+          <div class="logo" />
+        </a-col>
+        <a-col :span="20" :order="2">
+          <a-menu
+            theme="dark"
+            mode="horizontal"
+            :default-selected-keys="['2']"
+            :style="{ float: 'left', lineHeight: '64px' }"
+          >
+            <a-menu-item key="1">nav 1</a-menu-item>
+            <a-menu-item key="2">nav 2</a-menu-item>
+            <a-menu-item key="3">nav 3</a-menu-item>
+          </a-menu>
+        </a-col>
+        <a-col :span="2" :order="3">
+          <a-avatar
+            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+          />
+          {{ loggedInStatus }}
+        </a-col>
+      </a-row>
+    </a-layout-header>
     <a-layout-content
-      :style="{ padding: '0 150px', width: '1200px', margin: '0 auto' }"
+      :style="{ padding: '0 150px', width: '1440px', margin: '0 auto' }"
     >
       <a-breadcrumb style="margin: 16px 0">
         <a-breadcrumb-item>Home</a-breadcrumb-item>
         <a-breadcrumb-item>List</a-breadcrumb-item>
         <a-breadcrumb-item>App</a-breadcrumb-item>
       </a-breadcrumb>
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">
-        <a-row type="flex" justify="center" class="main-content">
-          <a-col :span="6" :push="18">col-18 col-push-6</a-col>
-          <a-col :span="18" :pull="6">
-            <a-row>
-              <a-col>
-                <div class="info">
-                  <h1 class="name">Naomi Weatherford</h1>
-                  <h2 class="job">Frontend Web Designer</h2>
-                </div>
-              </a-col>
-            </a-row>
-            <a-row>
-              <a-col>
-                <a-list
-                  :dataSource="data"
-                  :grid="{ gutter: 16, column: 2 }"
-                  item-layout="horizontal"
-                >
-                  <a-list-item slot="renderItem" slot-scope="item">
-                    <a-icon type="android" /> {{ item.title }}
-                  </a-list-item>
-                </a-list>
-              </a-col>
-            </a-row>
-            <a-row>
-              <a-col>
-                <h3>Mój dzień</h3>
-                <canvas id="myChart" width="400" height="400"></canvas>
-              </a-col>
-            </a-row>
-          </a-col>
-        </a-row>
-      </div>
+      <nuxt></nuxt>
     </a-layout-content>
+    <a-modal v-model="visible" title="Logowanie" onOk="handleOk">
+      <template slot="footer">
+        <a-button key="back">Anuluj</a-button>
+        <a-button key="submit" type="primary">
+          Zaloguj
+        </a-button>
+      </template>
+      <a-form
+        id="components-form-demo-normal-login"
+        :form="form"
+        class="login-form"
+        @submit="handleSubmit"
+      >
+        <a-form-item>
+          <a-input
+            v-decorator="[
+              'userName',
+              {
+                rules: [
+                  { required: true, message: 'Please input your username!' }
+                ]
+              }
+            ]"
+            placeholder="Username"
+          >
+            <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+          </a-input>
+        </a-form-item>
+        <a-form-item>
+          <a-input
+            v-decorator="[
+              'password',
+              {
+                rules: [
+                  { required: true, message: 'Please input your Password!' }
+                ]
+              }
+            ]"
+            type="password"
+            placeholder="Password"
+          >
+            <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+          </a-input>
+        </a-form-item>
+        <a-form-item>
+          <a-checkbox
+            v-decorator="[
+              'remember',
+              {
+                valuePropName: 'checked',
+                initialValue: true
+              }
+            ]"
+          >
+            Remember me
+          </a-checkbox>
+          <a class="login-form-forgot" href="">
+            Forgot password
+          </a>
+        </a-form-item>
+      </a-form>
+    </a-modal>
     <a-layout-footer style="text-align: center">
       NextCV ©2019 Created by D.
     </a-layout-footer>
   </a-layout>
 </template>
 <script>
-import Chart from "chart.js";
-const data = [
-  {
-    title: "Ant Design Title 1"
-  },
-  {
-    title: "Ant Design Title 2"
-  },
-  {
-    title: "Ant Design Title 3"
-  },
-  {
-    title: "Ant Design Title 4"
-  }
-];
-export default {
+import { Component, Vue } from "vue-property-decorator";
+export default
+@Component({
+  components: {},
+  methods: {}
+})
+class Index extends Vue {
+  visible = true;
   data() {
-    return {
-      data
-    };
-  },
-  mounted() {
-    const ctx = document.getElementById("myChart");
-    const myChart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
-            ],
-            borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)"
-            ],
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true
-              }
-            }
-          ]
-        }
-      }
-    });
-    console.log(myChart);
+    return {};
   }
-};
+
+  /**
+   * Computed string returning login status depending on current
+   * authentication state from auth-module.
+   *
+   * @returns {string}
+   */
+  get loggedInStatus() {
+    return this.$auth.$state.loggedIn ? "Logged In" : "Guest";
+  }
+}
 </script>
-<style>
+<style lang="scss">
+$dark: #1f2426;
+$gray: #4b5859;
+$blueGray: #293e41;
+$lightestBlue: #b4dad7;
+$lightBlue: #519ca4;
+$blue: #2196a7;
+$darkBlue: #307982;
+$darkestBlue: #215961;
+$darkest-blue: #1a237e;
+$darker-blue: #283593;
+$dark-blue: #303f9f;
+$medium-blue: #3949ab;
+$light-blue: #3f51b5;
+$lighter-blue: #5c6bc0;
+$lightest-blue: #9fa8da;
+$white: #ffffff;
+$black: #0e1442;
+$orange: #ffb300;
+$yellow: #fdd835;
+$dark-pink: #ad1457;
+$light-pink: #d81b60;
+
 body {
-  font-family: "Montserrat", sans-serif;
+  background-color: white;
+  color: $lightestBlue;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
 }
-#components-layout-demo-top .main-content {
-  background-image: url("~assets/backcv.png");
-  background-repeat: no-repeat;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $lightestBlue;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
 }
+
+h3 {
+  transition-duration: 0.3s;
+  margin-top: 0;
+  i {
+    color: $darker-blue;
+    background: $orange;
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+    line-height: 42px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 8px;
+    transition-duration: 0.3s;
+  }
+}
+
+.ant-layout {
+  background-color: white;
+  .main-container {
+    background-color: #f0f2f5;
+    background-repeat: no-repeat;
+    .left-sider {
+      padding: 24px 24px 0 24px;
+      background-color: $dark;
+    }
+    .right-sider {
+      padding: 24px 24px;
+      background-color: #f0f2f5;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $dark;
+        font-weight: 400;
+      }
+    }
+  }
+}
+.ant-list {
+  color: $lightestBlue;
+  .ant-list-item-action {
+    > li {
+      color: $lightestBlue;
+    }
+  }
+  .ant-list-item-meta-description {
+    color: $lightestBlue;
+  }
+  .ant-list-item-meta-title {
+    > a {
+      color: $lightestBlue;
+    }
+  }
+}
+.technologies {
+  text-align: center;
+  .ant-tag {
+    color: $dark;
+    border-radius: 0px;
+    font-weight: 400;
+  }
+}
+
 #components-layout-demo-top .logo {
   width: 120px;
   height: 31px;
-  background: rgba(255, 255, 255, 0.2);
   margin: 16px 24px 16px 0;
   float: left;
+}
+
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
 }
 </style>
