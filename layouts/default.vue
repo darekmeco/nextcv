@@ -28,22 +28,19 @@
     <a-layout-content
       :style="{ padding: '0 150px', width: '1440px', margin: '0 auto' }"
     >
-      <a-breadcrumb style="margin: 16px 0">
-        <a-breadcrumb-item>Home</a-breadcrumb-item>
-        <a-breadcrumb-item>List</a-breadcrumb-item>
-        <a-breadcrumb-item>App</a-breadcrumb-item>
-      </a-breadcrumb>
-      <nuxt></nuxt>
+      <div v-if="$auth.$state.loggedIn">
+        <a-breadcrumb style="margin: 16px 0">
+          <a-breadcrumb-item>Home</a-breadcrumb-item>
+          <a-breadcrumb-item>List</a-breadcrumb-item>
+          <a-breadcrumb-item>App</a-breadcrumb-item>
+        </a-breadcrumb>
+        <nuxt></nuxt>
+      </div>
     </a-layout-content>
-    <a-modal
-      v-if="!$auth.$state.loggedIn"
-      v-model="visible"
-      title="Logowanie"
-      on-ok="handleOk"
-    >
+    <a-modal v-if="!$auth.$state.loggedIn" v-model="visible" title="Logowanie">
       <template slot="footer">
-        <a-button key="back">Anuluj</a-button>
-        <a-button key="submit" type="primary">
+        <a-button @click="visible = false">Anuluj</a-button>
+        <a-button @click="handleSubmit">
           Zaloguj
         </a-button>
       </template>
@@ -51,7 +48,6 @@
         id="components-form-demo-normal-login"
         :form="form"
         class="login-form"
-        @submit="handleSubmit"
       >
         <a-form-item>
           <a-input
@@ -115,7 +111,8 @@ export default
 @Component({
   components: {},
   methods: {},
-  mixins: [AuthMixin]
+  mixins: [AuthMixin],
+  middleware: ["auth"]
 })
 class Index extends Vue {
   visible = true;
@@ -129,7 +126,13 @@ class Index extends Vue {
   }
 
   handleSubmit() {
-    this.login();
+    console.log("submit");
+    this.form.validateFields(async (err, values) => {
+      if (!err) {
+        console.log("Received values of form: ", values);
+        await this.login();
+      }
+    });
   }
 
   /**

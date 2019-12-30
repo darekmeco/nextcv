@@ -48,6 +48,15 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/stylelint-module
     "@nuxtjs/stylelint-module"
   ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { propertyName: "token.accessToken" }
+        }
+      }
+    }
+  },
   /*
    ** Nuxt.js modules
    */
