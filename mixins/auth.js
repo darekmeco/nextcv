@@ -47,7 +47,7 @@ class AuthMixin extends Vue {
    * @returns {Promise<T>}
    */
   async login() {
-    this.$toast.show("Log in...");
+    this.$message.info("Log in...");
     await this.$auth
       .login({
         data: {
