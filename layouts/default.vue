@@ -35,7 +35,12 @@
       </a-breadcrumb>
       <nuxt></nuxt>
     </a-layout-content>
-    <a-modal v-model="visible" title="Logowanie" onOk="handleOk">
+    <a-modal
+      v-if="!$auth.$state.loggedIn"
+      v-model="visible"
+      title="Logowanie"
+      on-ok="handleOk"
+    >
       <template slot="footer">
         <a-button key="back">Anuluj</a-button>
         <a-button key="submit" type="primary">
@@ -104,15 +109,27 @@
 </template>
 <script>
 import { Component, Vue } from "vue-property-decorator";
+import AuthMixin from "~/mixins/auth";
+
 export default
 @Component({
   components: {},
-  methods: {}
+  methods: {},
+  mixins: [AuthMixin]
 })
 class Index extends Vue {
   visible = true;
+
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: "normal_login" });
+  }
+
   data() {
     return {};
+  }
+
+  handleSubmit() {
+    this.login();
   }
 
   /**
