@@ -18,10 +18,14 @@
           </a-menu>
         </a-col>
         <a-col :span="2" :order="3">
-          <a-avatar
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          />
           {{ loggedInStatus }}
+          <a-button
+            v-if="$auth.$state.loggedIn"
+            type="link"
+            icon="logout"
+            size="small"
+            @click="this.logout"
+          />
         </a-col>
       </a-row>
     </a-layout-header>
@@ -130,6 +134,8 @@ class Index extends Vue {
     this.form.validateFields(async (err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        this.username = values.userName;
+        this.password = values.password;
         await this.login();
       }
     });
@@ -143,6 +149,14 @@ class Index extends Vue {
    */
   get loggedInStatus() {
     return this.$auth.$state.loggedIn ? "Logged In" : "Guest";
+  }
+
+  get state() {
+    return JSON.stringify(this.$auth.$state, undefined, 2);
+  }
+
+  mounted() {
+    this.$message.info("Not authorized...");
   }
 }
 </script>
