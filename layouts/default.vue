@@ -139,13 +139,17 @@ class Index extends Vue {
     this.form.validateFields(async (err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
-        const authData = await this.$axios.$osr(
+        const authData = await this.$axios.$post(
           "http://localhost:1337/auth/local",
           {
             identifier: values.userName,
             password: values.password
           }
         );
+
+        if (authData.jwt && authData.user) {
+          localStorage.setItem("auth", JSON.stringify(authData));
+        }
         console.log("AuthData: ", authData);
       }
     });
