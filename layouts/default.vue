@@ -20,11 +20,11 @@
         <a-col :span="2" :order="3">
           {{ loggedInStatus }}
           <a-button
-            v-if="$auth.$state.loggedIn"
+            v-if="$store.state.auth.loggedIn"
             type="link"
             icon="logout"
             size="small"
-            @click="this.logout"
+            @click="handleLogout"
           />
         </a-col>
       </a-row>
@@ -32,7 +32,7 @@
     <a-layout-content
       :style="{ padding: '0 150px', width: '1440px', margin: '0 auto' }"
     >
-      <div v-if="$auth.$state.loggedIn">
+      <div v-if="$store.state.auth.loggedIn">
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>Home</a-breadcrumb-item>
           <a-breadcrumb-item>List</a-breadcrumb-item>
@@ -41,7 +41,11 @@
         <nuxt></nuxt>
       </div>
     </a-layout-content>
-    <a-modal v-if="!$auth.$state.loggedIn" v-model="visible" title="Logowanie">
+    <a-modal
+      v-if="!$store.state.auth.loggedIn"
+      v-model="visible"
+      title="Logowanie"
+    >
       <template slot="footer">
         <a-button @click="visible = false">Anuluj</a-button>
         <a-button @click="handleSubmit">
@@ -109,6 +113,7 @@
 </template>
 <script>
 import { Component, Vue } from "vue-property-decorator";
+import Cookie from "js-cookie";
 import AuthMixin from "~/mixins/auth";
 
 export default
@@ -134,11 +139,23 @@ class Index extends Vue {
     this.form.validateFields(async (err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
-        this.username = values.userName;
-        this.password = values.password;
-        await this.login();
+        const authData = await this.$axios.$osr(
+          "http://localhost:1337/auth/local",
+          {
+            identifier: values.userName,
+            password: values.password
+          }
+        );
+        console.log("AuthData: ", authData);
       }
     });
+  }
+
+  handleLogout() {
+    localStorage.clear();
+    Cookie.remove("auth._refresh_token.local");
+    Cookie.remove("auth._token.local");
+    Cookie.remove("auth.strategy");
   }
 
   /**
@@ -148,15 +165,11 @@ class Index extends Vue {
    * @returns {string}
    */
   get loggedInStatus() {
-    return this.$auth.$state.loggedIn ? "Logged In" : "Guest";
-  }
-
-  get state() {
-    return JSON.stringify(this.$auth.$state, undefined, 2);
+    return this.$store.state.auth.loggedIn ? "Logged In" : "Guest";
   }
 
   mounted() {
-    this.$message.info("Not authorized...");
+    this.$message.info("Hello...");
   }
 }
 </script>
