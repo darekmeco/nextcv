@@ -6,8 +6,8 @@ module.exports = {
   head: {
     title: process.env.npm_package_name || "",
     meta: [
-      {charset: "utf-8"},
-      {name: "viewport", content: "width=device-width, initial-scale=1"},
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         hid: "description",
         name: "description",
@@ -15,7 +15,7 @@ module.exports = {
       }
     ],
     link: [
-      {rel: "icon", type: "image/x-icon", href: "/favicon.ico"},
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css?family=Bitter&display=swap"
@@ -30,7 +30,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: {color: "#fff"},
+  loading: { color: "#fff" },
   /*
    ** Global CSS
    */
@@ -38,7 +38,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["@/plugins/antd-ui"],
+  plugins: ["@/plugins/antd-ui", "@/plugins/auth.js"],
   /*
    ** Nuxt.js dev-modules
    */
@@ -48,25 +48,10 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/stylelint-module
     "@nuxtjs/stylelint-module"
   ],
-  auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          user: false,
-          logout: false,
-          login: {
-            url: "http://localhost:1337/auth/local",
-            propertyName: "jwt"
-          }
-        }
-      }
-    }
-  },
   /*
    ** Nuxt.js modules
    */
   modules: [
-    "~/modules/auth.js",
     "@nuxtjs/axios",
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",

@@ -19,13 +19,9 @@
         </a-col>
         <a-col :span="2" :order="3">
           {{ loggedInStatus }}
-          <a-button
-            v-if="$store.state.auth.loggedIn"
-            type="link"
-            icon="logout"
-            size="small"
-            @click="handleLogout"
-          />
+          <button type="link" icon="logout" size="small" @click="handleLogout">
+            Wyl
+          </button>
         </a-col>
       </a-row>
     </a-layout-header>
@@ -113,15 +109,13 @@
 </template>
 <script>
 import { Component, Vue } from "vue-property-decorator";
-import Cookie from "js-cookie";
-import AuthMixin from "~/mixins/auth";
+// import AuthMixin from "~/mixins/auth";
 
 export default
 @Component({
   components: {},
   methods: {},
-  mixins: [AuthMixin],
-  middleware: ["auth"]
+  mixins: []
 })
 class Index extends Vue {
   visible = true;
@@ -149,17 +143,17 @@ class Index extends Vue {
 
         if (authData.jwt && authData.user) {
           localStorage.setItem("auth", JSON.stringify(authData));
+          this.$store.commit("auth/setAuthState", authData);
         }
         console.log("AuthData: ", authData);
       }
     });
   }
 
-  handleLogout() {
-    localStorage.clear();
-    Cookie.remove("auth._refresh_token.local");
-    Cookie.remove("auth._token.local");
-    Cookie.remove("auth.strategy");
+  async handleLogout() {
+    console.log(1);
+    await this.$store.commit("auth/removeAuthState");
+    console.log(4);
   }
 
   /**
