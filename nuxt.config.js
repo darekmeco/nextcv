@@ -66,6 +66,7 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
+    "~/modules/auth.js",
     "@nuxtjs/axios",
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
