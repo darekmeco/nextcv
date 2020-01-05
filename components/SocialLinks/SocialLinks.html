@@ -1,0 +1,11 @@
+<div>
+  <h2>Find me online</h2>
+  <a-list size="small" bordered :dataSource="myData">
+    <a-list-item slot="renderItem" slot-scope="item">
+      <a-button type="primary" shape="circle" :icon="item.icon" size="small" @click="redirectToUrl(item)"></a-button>
+      <a-button type="link" size="small" @click="redirectToUrl(item)">{{
+                item.uri
+              }}</a-button>
+    </a-list-item>
+  </a-list>
+</div>

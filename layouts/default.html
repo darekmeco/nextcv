@@ -1,0 +1,98 @@
+<div>
+  <a-layout id="layout-top" class="layout" v-if="$store.state.auth.loggedIn">
+    <a-layout-header>
+      <a-row type="flex">
+        <a-col :span="3" :order="1">
+          <div class="logo">
+            <img :src="require('~/assets/logo.png')" />
+          </div>
+        </a-col>
+        <a-col :span="19" :order="2">
+          <a-menu theme="dark" mode="horizontal" :default-selected-keys="['2']" :style="{ float: 'left', lineHeight: '64px' }">
+          </a-menu>
+        </a-col>
+        <a-col :span="2" :order="3">
+          {{ loggedInStatus }}
+          <span v-if="!$store.state.auth.loggedIn">
+            <a-button type="link" icon="login" @click="visible = true" />
+          </span>
+          <span v-if="$store.state.auth.loggedIn">
+            <a-button type="link" icon="logout" @click="handleLogout" />
+          </span>
+        </a-col>
+      </a-row>
+    </a-layout-header>
+    <a-layout-content>
+      <div>
+        <a-row type="flex" justify="center" class="main-content">
+          <a-col :span="14" class="left-sider">
+            <a-breadcrumb v-if="$store.state.auth.loggedIn" style="margin: 16px 16px">
+              <a-breadcrumb-item>Home</a-breadcrumb-item>
+              <a-breadcrumb-item>Dariusz Męciński</a-breadcrumb-item>
+            </a-breadcrumb>
+            <a-breadcrumb v-else style="margin: 16px 0">
+              <a-breadcrumb-item>Home</a-breadcrumb-item>
+            </a-breadcrumb>
+          </a-col>
+        </a-row>
+        <nuxt></nuxt>
+      </div>
+    </a-layout-content>
+    <a-layout-footer style="text-align: center">
+      NextCV ©2019 Created by D.
+    </a-layout-footer>
+  </a-layout>
+  <a-modal v-if="!$store.state.auth.loggedIn" v-model="visible" :closable="false" centered>
+    <template slot="title">
+      <div class="logo">
+        <img :src="require('~/assets/logo.png')" />
+      </div>
+    </template>
+    <template slot="footer">
+      <a-button @click="visible = false">Cancel</a-button>
+      <a-button @click="handleSubmit">
+        Sign in
+      </a-button>
+    </template>
+    <a-form id="components-form-demo-normal-login" :form="form" class="login-form">
+      <a-form-item>
+        <a-input v-decorator="[
+              'userName',
+              {
+                rules: [
+                  { required: true, message: 'Please input your username!' }
+                ]
+              }
+            ]" placeholder="Username">
+          <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-input v-decorator="[
+              'password',
+              {
+                rules: [
+                  { required: true, message: 'Please input your Password!' }
+                ]
+              }
+            ]" type="password" placeholder="Password">
+          <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-checkbox v-decorator="[
+              'remember',
+              {
+                valuePropName: 'checked',
+                initialValue: true
+              }
+            ]">
+          Remember me
+        </a-checkbox>
+        <a class="login-form-forgot" href="">
+          Forgot password
+        </a>
+      </a-form-item>
+    </a-form>
+  </a-modal>
+</div>

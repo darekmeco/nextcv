@@ -9,26 +9,38 @@ export default
   // template: withRender
 })
 class TimeChart extends Vue {
+  chart = null;
   get myTimeData() {
-    return this.$store.state.mainData.myTime;
+    return this.$store.state.mainData.resume.my_time;
+  }
+
+  beforeDestroy() {
+    console.log("beforeDestroy");
+    if (this.chart) {
+      // this.chart.destroy();
+      this.chart = null;
+    }
+  }
+
+  data() {
+    return {};
   }
 
   mounted() {
     const ctx = document.getElementById("myChart");
-    (() =>
-      new Chart(ctx, {
-        type: "doughnut",
-        data: this.myTimeData,
-        options: {
-          legend: {
-            display: true,
-            position: "right"
-          },
-          tooltips: {
-            enabled: true,
-            intersect: false
-          }
+    this.chart = new Chart(ctx, {
+      type: "doughnut",
+      data: this.myTimeData,
+      options: {
+        legend: {
+          display: true,
+          position: "right"
+        },
+        tooltips: {
+          enabled: true,
+          intersect: false
         }
-      }))();
+      }
+    });
   }
 }

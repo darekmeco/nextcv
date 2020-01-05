@@ -7,12 +7,13 @@ export const mutations = {
   setAuthState(state, { jwt, user }) {
     state.loggedIn = true;
     state.jwt = jwt;
+    this.$axios.setToken(jwt, "Bearer");
+    console.log("set token", state.jwt);
   },
   async removeAuthState(state) {
-    console.log(2);
     state.loggedIn = false;
     state.jwt = null;
     await localStorage.clear();
-    console.log(3);
+    this.$axios.setToken(false);
   }
 };

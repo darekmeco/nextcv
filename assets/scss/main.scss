@@ -1,0 +1,147 @@
+$dark: #1f2426;
+$gray: #4b5859;
+$blueGray: #293e41;
+$lightestBlue: #b4dad7;
+$lightBlue: #519ca4;
+$blue: #2196a7;
+$darkBlue: #307982;
+$darkestBlue: #215961;
+$darkest-blue: #1a237e;
+$darker-blue: #283593;
+$dark-blue: #303f9f;
+$medium-blue: #3949ab;
+$light-blue: #3f51b5;
+$lighter-blue: #5c6bc0;
+$lightest-blue: #9fa8da;
+$white: #ffffff;
+$black: #0e1442;
+$orange: #ffb300;
+$yellow: #fdd835;
+$dark-pink: #ad1457;
+$light-pink: #d81b60;
+
+body {
+  background-color: white;
+  color: $lightestBlue;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $lightestBlue;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+}
+
+h3 {
+  transition-duration: 0.3s;
+  margin-top: 0;
+
+  i {
+    color: $darker-blue;
+    background: $orange;
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+    line-height: 42px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 8px;
+    transition-duration: 0.3s;
+  }
+}
+
+.ant-modal-title {
+  .logo {
+    text-align: center;
+  }
+}
+
+.ant-layout {
+  background-color: white;
+
+  .main-container {
+    background-repeat: no-repeat;
+
+    .left-sider {
+      padding: 24px 24px 0;
+      background-color: $dark;
+    }
+
+    .right-sider {
+      padding: 24px;
+      background-color: #f0f2f5;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $dark;
+        font-weight: 400;
+      }
+
+      .ant-list {
+        color: $dark;
+      }
+    }
+  }
+}
+
+.ant-list {
+  color: $lightestBlue;
+
+  .ant-list-item-action {
+    > li {
+      color: $lightestBlue;
+    }
+  }
+
+  .ant-list-item-meta-description {
+    color: $lightestBlue;
+  }
+
+  .ant-list-item-meta-title {
+    color: $lightestBlue;
+
+    > a {
+      color: $lightestBlue;
+    }
+  }
+}
+
+.technologies {
+  text-align: center;
+
+  .ant-tag {
+    color: $dark;
+    border-radius: 0;
+    font-weight: 400;
+  }
+}
+
+#layout-top .logo {
+  width: 120px;
+  height: 31px;
+  margin: 0;
+  float: left;
+}
+
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}

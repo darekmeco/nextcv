@@ -1,19 +1,21 @@
 <template>
-  <div class="main-container">
+  <div class="main-container" v-if="loaded">
     <a-row type="flex" justify="center" class="main-content">
-      <a-col :span="16" class="left-sider">
+      <a-col :span="9" class="left-sider">
         <a-row>
           <a-col>
             <div class="info">
-              <h1 class="name">Dariusz Męciński</h1>
-              <h2 class="job">Programmer</h2>
+              <h1 class="name">
+                {{ mainData.firstname }} {{ mainData.lastname }}
+              </h1>
+              <h2 class="job">{{ mainData.position }}</h2>
             </div>
           </a-col>
         </a-row>
         <a-row>
           <a-col>
             <a-list
-              :data-source="main"
+              :data-source="mainData.contact_data"
               :grid="{ gutter: 16, column: 2 }"
               item-layout="horizontal"
             >
@@ -24,8 +26,47 @@
           </a-col>
         </a-row>
         <a-row>
-          <a-col :span="14">
-            <h2>My time</h2>
+          <a-col :span="24">
+            <h2>Experience</h2>
+            <a-list
+              :data-source="mainData.experiences"
+              item-layout="vertical"
+              size="large"
+              v-if="true"
+            >
+              <div slot="footer"><b>ant design vue</b> footer part</div>
+              <a-list-item slot="renderItem" key="item.id" slot-scope="item">
+                <template v-for="{ type, text } in actions" slot="actions">
+                  <span :key="type">
+                    <a-icon :type="type" style="margin-right: 8px" />
+                    {{ text }}
+                  </span>
+                </template>
+                <a-list-item-meta>
+                  <div slot="description">
+                    <h4>{{ item.company_name }}</h4>
+                    <div v-html="md.render(item.description)"></div>
+                  </div>
+
+                  <div slot="title" :href="item.href">
+                    <a-row type="flex" justify="start">
+                      <a-col :span="14">
+                        {{ item.position }}
+                      </a-col>
+                      <a-col :span="10" :push="0">
+                        <a-button size="small" icon="calendar" ghost>
+                          {{ item.start }}
+                          - {{ item.end }}
+                        </a-button>
+                        <a-button size="small" icon="calendar" ghost>
+                          {{ item.place }}
+                        </a-button>
+                      </a-col>
+                    </a-row>
+                  </div>
+                </a-list-item-meta>
+              </a-list-item>
+            </a-list>
           </a-col>
           <a-col :span="10"> </a-col>
         </a-row>
@@ -35,9 +76,14 @@
               <fa :icon="fas.faBriefcase" />
               Education
             </h2>
-            <a-list :data-source="listData" item-layout="vertical" size="large">
+            <a-list
+              :data-source="mainData.educations"
+              item-layout="vertical"
+              size="large"
+              v-if="true"
+            >
               <div slot="footer"><b>ant design vue</b> footer part</div>
-              <a-list-item slot="renderItem" key="item.title" slot-scope="item">
+              <a-list-item slot="renderItem" key="item.id" slot-scope="item">
                 <template v-for="{ type, text } in actions" slot="actions">
                   <span :key="type">
                     <a-icon :type="type" style="margin-right: 8px" />
@@ -45,21 +91,15 @@
                   </span>
                 </template>
                 <a-list-item-meta :description="item.description">
-                  <a slot="title" :href="item.href">{{ item.title }}</a>
+                  <a slot="title" :href="item.href">{{ item.course }}</a>
                 </a-list-item-meta>
               </a-list-item>
             </a-list>
           </a-col>
           <a-col :span="10"> </a-col>
         </a-row>
-        <a-row>
-          <a-col :span="14">
-            <h2>Experience</h2>
-          </a-col>
-          <a-col :span="10"> </a-col>
-        </a-row>
       </a-col>
-      <a-col :span="8" class="right-sider">
+      <a-col :span="5" class="right-sider">
         <a-row>
           <a-col>
             <logo></logo>
@@ -68,6 +108,11 @@
         <a-row>
           <a-col class="technologies">
             <technologies></technologies>
+          </a-col>
+        </a-row>
+        <a-row>
+          <a-col>
+            <social-links></social-links>
           </a-col>
         </a-row>
         <a-row>
@@ -83,7 +128,10 @@
 <script>
 import { Component, Vue } from "vue-property-decorator";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import MarkdownIt from "markdown-it";
+
 import TimeChart from "../components/TimeChart/TimeChart.js";
+import SocialLinks from "../components/SocialLinks/SocialLinks.js";
 import Technologies from "../components/Technologies.vue";
 import Logo from "../components/Logo.vue";
 
@@ -104,15 +152,25 @@ export default
 @Component({
   components: {
     TimeChart,
+    SocialLinks,
     Technologies,
     Logo
   },
   methods: {}
 })
 class Index extends Vue {
+  loaded = false;
   data() {
     return {
+      md: null,
       listData,
+      findMyData: [
+        "Racing car sprays burning fuel into crowd.",
+        "Japanese princess to wed commoner.",
+        "Australian walks 100km after outback crash.",
+        "Man charged over missing wedding girl.",
+        "Los Angeles battles huge wildfires."
+      ],
       actions: [
         { type: "star-o", text: "156" },
         { type: "like-o", text: "156" },
@@ -121,12 +179,18 @@ class Index extends Vue {
     };
   }
 
-  get main() {
-    return this.$store.state.mainData.main;
+  get mainData() {
+    return this.$store.state.mainData.resume;
   }
 
   get fas() {
     return fas;
+  }
+
+  async mounted() {
+    await this.$store.dispatch("mainData/getMainData");
+    this.md = new MarkdownIt();
+    this.loaded = true;
   }
 }
 </script>
