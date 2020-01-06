@@ -1,0 +1,6 @@
+<div>
+  <h2>{{title}}</h2>
+  <a-tag v-for="(tag, index) in myData" :key="index" @click="redirectToUrl(tag)">{{
+        tag.name
+      }}</a-tag>
+</div>

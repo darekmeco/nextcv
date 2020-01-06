@@ -1,10 +1,12 @@
 <div>
-  <h2><a-icon type="cloud" /> Find me online</h2>
+  <h2>
+    <a-icon type="gold" /> {{title}}
+  </h2>
   <a-list size="small" :dataSource="myData">
     <a-list-item slot="renderItem" slot-scope="item">
       <a-button type="primary" shape="circle" :icon="item.icon" size="small" @click="redirectToUrl(item)"></a-button>
       <a-button type="link" size="small" @click="redirectToUrl(item)">{{
-                item.uri
+                item.name
               }}</a-button>
     </a-list-item>
   </a-list>

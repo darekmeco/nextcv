@@ -71,12 +71,44 @@ h3 {
 
     .left-sider {
       padding: 24px 24px 0;
-      background-color: $dark;
+      background-color: darken($darkBlue, 20%);
+
+      .ant-btn-primary {
+        background-color: $blue;
+        ￼border-color: darken($blue, 10%);
+      }
+
+      h2 {
+        margin-top: 10px;
+        border-bottom: 1px solid lighten($dark, 10%);
+      }
+
+      .ant-list-something-after-last-item {
+        .ant-spin-container {
+          > .ant-list-item:last-child {
+            border-bottom: 1px solid lighten($dark, 10%);
+          }
+        }
+      }
     }
 
     .right-sider {
       padding: 24px;
       background-color: #f0f2f5;
+
+      .ant-btn-link {
+        color: $blue;
+      }
+
+      .ant-btn-primary {
+        background-color: $blue;
+        ￼￼border-color: darken($blue, 10%);
+      }
+
+      h2 {
+        margin-top: 10px;
+        border-bottom: 1px solid $lightestBlue;
+      }
 
       h1,
       h2,

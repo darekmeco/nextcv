@@ -4,7 +4,7 @@ import Template from "./SocialLinks.html";
 export default
 @Template
 @Component({})
-class TimeChart extends Vue {
+class SocialLinks extends Vue {
   get myData() {
     return this.$store.state.mainData.resume.social_links;
   }

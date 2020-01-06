@@ -20,14 +20,23 @@
               item-layout="horizontal"
             >
               <a-list-item slot="renderItem" slot-scope="item">
-                <a-icon type="android" /> {{ item.title }}
+                <a-button
+                  type="primary"
+                  shape="circle"
+                  :icon="item.icon"
+                  size="small"
+                ></a-button>
+                {{ item.title }}
               </a-list-item>
             </a-list>
           </a-col>
         </a-row>
         <a-row>
           <a-col :span="24">
-            <h2>Experience</h2>
+            <h2>
+              <a-icon type="laptop" />
+              Experience
+            </h2>
             <a-list
               :data-source="mainData.experiences"
               item-layout="vertical"
@@ -73,7 +82,7 @@
         <a-row>
           <a-col :span="24">
             <h2>
-              <fa :icon="fas.faBriefcase" />
+              <a-icon type="audit" />
               Education
             </h2>
             <a-list
@@ -107,7 +116,7 @@
         </a-row>
         <a-row>
           <a-col class="technologies">
-            <technologies></technologies>
+            <skills title="Technologies"></skills>
           </a-col>
         </a-row>
         <a-row>
@@ -115,6 +124,12 @@
             <social-links></social-links>
           </a-col>
         </a-row>
+        <a-row>
+          <a-col>
+            <portfolio title="This project"></portfolio>
+          </a-col>
+        </a-row>
+
         <a-row>
           <a-col>
             <h2>My time</h2>
@@ -132,7 +147,8 @@ import MarkdownIt from "markdown-it";
 
 import TimeChart from "../components/TimeChart/TimeChart.js";
 import SocialLinks from "../components/SocialLinks/SocialLinks.js";
-import Technologies from "../components/Technologies.vue";
+import Portfolio from "../components/Portfolio/Portfolio.js";
+import Skills from "../components/Skills/Skills.js";
 import Logo from "../components/Logo.vue";
 
 const listData = [];
@@ -153,8 +169,9 @@ export default
   components: {
     TimeChart,
     SocialLinks,
-    Technologies,
-    Logo
+    Skills,
+    Logo,
+    Portfolio
   },
   methods: {}
 })
