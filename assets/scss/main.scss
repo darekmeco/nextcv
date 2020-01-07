@@ -73,6 +73,12 @@ h3 {
       padding: 24px 24px 0;
       background-color: darken($darkBlue, 20%);
 
+      .ant-btn-background-ghost {
+        color: $lightestBlue;
+        background: transparent !important;
+        border-color: $lightestBlue;
+      }
+
       .ant-btn-primary {
         background-color: $blue;
         ￼border-color: darken($blue, 10%);
@@ -81,6 +87,11 @@ h3 {
       h2 {
         margin-top: 10px;
         border-bottom: 1px solid lighten($dark, 10%);
+      }
+
+      .ant-list-split .ant-list-item {
+        border-bottom: 1px solid lighten($dark, 10%);
+        padding-bottom: 0px;
       }
 
       .ant-list-something-after-last-item {

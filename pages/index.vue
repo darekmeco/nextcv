@@ -45,12 +45,6 @@
             >
               <div slot="footer"><b>ant design vue</b> footer part</div>
               <a-list-item slot="renderItem" key="item.id" slot-scope="item">
-                <template v-for="{ type, text } in actions" slot="actions">
-                  <span :key="type">
-                    <a-icon :type="type" style="margin-right: 8px" />
-                    {{ text }}
-                  </span>
-                </template>
                 <a-list-item-meta>
                   <div slot="description">
                     <h4>{{ item.company_name }}</h4>
@@ -93,14 +87,26 @@
             >
               <div slot="footer"><b>ant design vue</b> footer part</div>
               <a-list-item slot="renderItem" key="item.id" slot-scope="item">
-                <template v-for="{ type, text } in actions" slot="actions">
-                  <span :key="type">
-                    <a-icon :type="type" style="margin-right: 8px" />
-                    {{ text }}
-                  </span>
-                </template>
                 <a-list-item-meta :description="item.description">
-                  <a slot="title" :href="item.href">{{ item.course }}</a>
+                  <div slot="description">
+                    <h4>{{ item.school_name }}</h4>
+                  </div>
+                  <div slot="title">
+                    <a-row type="flex" justify="start">
+                      <a-col :span="14">
+                        {{ item.course }}
+                      </a-col>
+                      <a-col :span="10" :push="0">
+                        <a-button size="small" icon="calendar" ghost>
+                          {{ item.start }}
+                          - {{ item.end }}
+                        </a-button>
+                        <a-button size="small" icon="calendar" ghost>
+                          {{ item.place }}
+                        </a-button>
+                      </a-col>
+                    </a-row>
+                  </div>
                 </a-list-item-meta>
               </a-list-item>
             </a-list>
@@ -136,6 +142,11 @@
             <time-chart></time-chart>
           </a-col>
         </a-row>
+        <a-row>
+          <a-col>
+            <languages></languages>
+          </a-col>
+        </a-row>
       </a-col>
     </a-row>
   </div>
@@ -147,6 +158,7 @@ import MarkdownIt from "markdown-it";
 
 import TimeChart from "../components/TimeChart/TimeChart.js";
 import SocialLinks from "../components/SocialLinks/SocialLinks.js";
+import Languages from "../components/Languages/Languages.js";
 import Portfolio from "../components/Portfolio/Portfolio.js";
 import Skills from "../components/Skills/Skills.js";
 import Logo from "../components/Logo.vue";
@@ -171,7 +183,8 @@ export default
     SocialLinks,
     Skills,
     Logo,
-    Portfolio
+    Portfolio,
+    Languages
   },
   methods: {}
 })
@@ -187,11 +200,6 @@ class Index extends Vue {
         "Australian walks 100km after outback crash.",
         "Man charged over missing wedding girl.",
         "Los Angeles battles huge wildfires."
-      ],
-      actions: [
-        { type: "star-o", text: "156" },
-        { type: "like-o", text: "156" },
-        { type: "message", text: "2" }
       ]
     };
   }
