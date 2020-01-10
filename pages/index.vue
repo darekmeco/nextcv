@@ -1,7 +1,14 @@
 <template>
   <div class="main-container" v-if="loaded">
     <a-row type="flex" justify="center" class="main-content">
-      <a-col :span="{ lg: 9, md: 12 }" class="left-sider">
+      <a-col
+        :xxl="{ span: 9 }"
+        :xl="{ span: 17 }"
+        :lg="{ span: 15 }"
+        :md="{ span: 12 }"
+        :sm="{ span: 24 }"
+        class="left-sider"
+      >
         <a-row>
           <a-col>
             <div class="info">
@@ -56,7 +63,11 @@
                       <a-col :span="14">
                         {{ item.position }}
                       </a-col>
-                      <a-col :span="10" :push="0">
+                      <a-col
+                        :span="10"
+                        :push="0"
+                        :style="{ textAlign: 'right' }"
+                      >
                         <a-button size="small" icon="calendar" ghost>
                           {{ item.start }}
                           - {{ item.end }}
@@ -96,7 +107,11 @@
                       <a-col :span="14">
                         {{ item.course }}
                       </a-col>
-                      <a-col :span="10" :push="0">
+                      <a-col
+                        :span="10"
+                        :push="0"
+                        :style="{ textAlign: 'right' }"
+                      >
                         <a-button size="small" icon="calendar" ghost>
                           {{ item.start }}
                           - {{ item.end }}
@@ -114,7 +129,14 @@
           <a-col :span="10"> </a-col>
         </a-row>
       </a-col>
-      <a-col :span="5" class="right-sider">
+      <a-col
+        :xxl="{ span: 5 }"
+        :xl="{ span: 7 }"
+        :lg="{ span: 9 }"
+        :md="{ span: 12 }"
+        :sm="{ span: 24 }"
+        class="right-sider"
+      >
         <a-row>
           <a-col>
             <logo></logo>
