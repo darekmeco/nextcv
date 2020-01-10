@@ -1,7 +1,7 @@
 <template>
   <div class="main-container" v-if="loaded">
     <a-row type="flex" justify="center" class="main-content">
-      <a-col :span="9" class="left-sider">
+      <a-col :span="{ lg: 9, md: 12 }" class="left-sider">
         <a-row>
           <a-col>
             <div class="info">
