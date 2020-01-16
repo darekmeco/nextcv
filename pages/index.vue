@@ -50,7 +50,6 @@
               size="large"
               v-if="true"
             >
-              <div slot="footer"><b>ant design vue</b> footer part</div>
               <a-list-item slot="renderItem" key="item.id" slot-scope="item">
                 <a-list-item-meta>
                   <div slot="description">
@@ -96,7 +95,6 @@
               size="large"
               v-if="true"
             >
-              <div slot="footer"><b>ant design vue</b> footer part</div>
               <a-list-item slot="renderItem" key="item.id" slot-scope="item">
                 <a-list-item-meta :description="item.description">
                   <div slot="description">
@@ -157,7 +155,11 @@
             <portfolio title="This project"></portfolio>
           </a-col>
         </a-row>
-
+        <a-row>
+          <a-col>
+            <passions></passions>
+          </a-col>
+        </a-row>
         <a-row>
           <a-col>
             <h2>My time</h2>
@@ -183,6 +185,7 @@ import SocialLinks from "../components/SocialLinks/SocialLinks.js";
 import Languages from "../components/Languages/Languages.js";
 import Portfolio from "../components/Portfolio/Portfolio.js";
 import Skills from "../components/Skills/Skills.js";
+import Passions from "../components/Passions/Passions.js";
 import Logo from "../components/Logo.vue";
 
 const listData = [];
@@ -206,7 +209,8 @@ export default
     Skills,
     Logo,
     Portfolio,
-    Languages
+    Languages,
+    Passions
   },
   methods: {}
 })

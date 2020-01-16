@@ -9,6 +9,10 @@ class Passions extends Vue {
     return this.$store.state.mainData.resume.passions;
   }
 
+  redirectToUrl(row) {
+    window.open(row.url, "_blank");
+  }
+
   data() {
     return {};
   }

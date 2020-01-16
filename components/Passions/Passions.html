@@ -3,18 +3,10 @@
     <a-icon type="cloud" /> Passions</h2>
   <a-list size="small" :dataSource="myData">
     <a-list-item slot="renderItem" slot-scope="item">
-      <a-list-item-meta>
-        <div slot="description">
-          <a-row>
-            <a-col :span="12">
-              <a-button type="link" size="small">{{item.name}}</a-button>
-            </a-col>
-            <a-col :span="12" :push="0" :style="{ textAlign: 'right' }">
-              <a-button type="link" size="small">{{item.level}}</a-button>
-            </a-col>
-          </a-row>
-        </div>
-      </a-list-item-meta>
+      <a-button type="primary" shape="circle" :icon="item.icon" size="small" @click="redirectToUrl(item)"></a-button>
+      <a-button type="link" size="small" @click="redirectToUrl(item)">{{
+                item.name
+              }}</a-button>
     </a-list-item>
   </a-list>
 </div>
