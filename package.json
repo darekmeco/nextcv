@@ -43,7 +43,7 @@
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.0.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "prettier": "^1.16.4",
     "require-extension-hooks": "^0.3.3",
