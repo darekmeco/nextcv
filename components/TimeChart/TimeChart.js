@@ -18,7 +18,8 @@ class TimeChart extends Vue {
           data: data.map(r => r.percentage),
           backgroundColor: data.map(r => r.color)
         }
-      ]
+      ],
+      labels: data.map(r => r.label)
     };
   }
 

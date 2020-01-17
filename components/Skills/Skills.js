@@ -7,7 +7,9 @@ export default
 class Skills extends Vue {
   @Prop({ type: String, default: "My skills" }) title;
   get myData() {
-    return this.$store.state.mainData.resume.skills;
+    return [...this.$store.state.mainData.resume.skills].sort(
+      () => Math.random() - 0.5
+    );
   }
 
   redirectToUrl(row) {

@@ -141,7 +141,7 @@
           </a-col>
         </a-row>
         <a-row>
-          <a-col class="technologies">
+          <a-col class="">
             <skills title="Technologies"></skills>
           </a-col>
         </a-row>
@@ -162,7 +162,6 @@
         </a-row>
         <a-row>
           <a-col>
-            <h2>My time</h2>
             <time-chart></time-chart>
           </a-col>
         </a-row>
