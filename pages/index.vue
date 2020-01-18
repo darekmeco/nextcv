@@ -1,7 +1,14 @@
 <template>
   <div class="main-container" v-if="loaded">
     <a-row type="flex" justify="center" class="main-content">
-      <a-col :span="9" class="left-sider">
+      <a-col
+        :xxl="{ span: 9 }"
+        :xl="{ span: 17 }"
+        :lg="{ span: 15 }"
+        :md="{ span: 12 }"
+        :sm="{ span: 24 }"
+        class="left-sider"
+      >
         <a-row>
           <a-col>
             <div class="info">
@@ -43,7 +50,6 @@
               size="large"
               v-if="true"
             >
-              <div slot="footer"><b>ant design vue</b> footer part</div>
               <a-list-item slot="renderItem" key="item.id" slot-scope="item">
                 <a-list-item-meta>
                   <div slot="description">
@@ -56,7 +62,11 @@
                       <a-col :span="14">
                         {{ item.position }}
                       </a-col>
-                      <a-col :span="10" :push="0">
+                      <a-col
+                        :span="10"
+                        :push="0"
+                        :style="{ textAlign: 'right' }"
+                      >
                         <a-button size="small" icon="calendar" ghost>
                           {{ item.start }}
                           - {{ item.end }}
@@ -85,7 +95,6 @@
               size="large"
               v-if="true"
             >
-              <div slot="footer"><b>ant design vue</b> footer part</div>
               <a-list-item slot="renderItem" key="item.id" slot-scope="item">
                 <a-list-item-meta :description="item.description">
                   <div slot="description">
@@ -96,7 +105,11 @@
                       <a-col :span="14">
                         {{ item.course }}
                       </a-col>
-                      <a-col :span="10" :push="0">
+                      <a-col
+                        :span="10"
+                        :push="0"
+                        :style="{ textAlign: 'right' }"
+                      >
                         <a-button size="small" icon="calendar" ghost>
                           {{ item.start }}
                           - {{ item.end }}
@@ -114,14 +127,21 @@
           <a-col :span="10"> </a-col>
         </a-row>
       </a-col>
-      <a-col :span="5" class="right-sider">
+      <a-col
+        :xxl="{ span: 5 }"
+        :xl="{ span: 7 }"
+        :lg="{ span: 9 }"
+        :md="{ span: 12 }"
+        :sm="{ span: 24 }"
+        class="right-sider"
+      >
         <a-row>
           <a-col>
             <logo></logo>
           </a-col>
         </a-row>
         <a-row>
-          <a-col class="technologies">
+          <a-col class="">
             <skills title="Technologies"></skills>
           </a-col>
         </a-row>
@@ -135,10 +155,13 @@
             <portfolio title="This project"></portfolio>
           </a-col>
         </a-row>
-
         <a-row>
           <a-col>
-            <h2>My time</h2>
+            <passions></passions>
+          </a-col>
+        </a-row>
+        <a-row>
+          <a-col>
             <time-chart></time-chart>
           </a-col>
         </a-row>
@@ -161,6 +184,7 @@ import SocialLinks from "../components/SocialLinks/SocialLinks.js";
 import Languages from "../components/Languages/Languages.js";
 import Portfolio from "../components/Portfolio/Portfolio.js";
 import Skills from "../components/Skills/Skills.js";
+import Passions from "../components/Passions/Passions.js";
 import Logo from "../components/Logo.vue";
 
 const listData = [];
@@ -184,7 +208,8 @@ export default
     Skills,
     Logo,
     Portfolio,
-    Languages
+    Languages,
+    Passions
   },
   methods: {}
 })

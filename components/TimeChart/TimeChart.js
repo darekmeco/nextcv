@@ -11,7 +11,16 @@ export default
 class TimeChart extends Vue {
   chart = null;
   get myTimeData() {
-    return this.$store.state.mainData.resume.my_time;
+    const data = this.$store.state.mainData.resume.user_times;
+    return {
+      datasets: [
+        {
+          data: data.map(r => r.percentage),
+          backgroundColor: data.map(r => r.color)
+        }
+      ],
+      labels: data.map(r => r.label)
+    };
   }
 
   beforeDestroy() {
