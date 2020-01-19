@@ -4,14 +4,14 @@ export const state = () => ({
 
 export const mutations = {
   setMainData(state, mainData) {
-    console.log("mainData store:", mainData);
     state.resume = mainData;
   }
 };
 
 export const actions = {
   async getMainData(store) {
-    const mainData = await this.$axios.$get("http://localhost:1337/resumes/1");
+    console.log("apiUrl", process.env.apiUrl);
+    const mainData = await this.$axios.$get(process.env.apiUrl + "/resumes/1");
     store.commit("setMainData", mainData);
   }
 };
