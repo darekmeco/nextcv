@@ -27,7 +27,7 @@ class Index extends Vue {
       if (!err) {
         console.log("Received values of form: ", values);
         const authData = await this.$axios.$post(
-          "http://localhost:1337/auth/local",
+          process.env.apiUrl+"/auth/local",
           {
             identifier: values.userName,
             password: values.password
