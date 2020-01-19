@@ -11,7 +11,7 @@ export const mutations = {
 
 export const actions = {
   async getMainData(store) {
-    const mainData = await this.$axios.$get("http://localhost:1337/resumes/1");
+    const mainData = await this.$axios.$get("https://www.nextcv.pl/resumes/1");
     store.commit("setMainData", mainData);
   }
 };
