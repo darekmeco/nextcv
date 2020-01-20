@@ -22,31 +22,32 @@ class Index extends Vue {
   }
 
   handleSubmit() {
-    console.log("submit");
     this.form.validateFields(async (err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
-        const authData = await this.$axios.$post(
-          process.env.apiUrl+"/auth/local",
-          {
-            identifier: values.userName,
-            password: values.password
+        try {
+          const authData = await this.$axios.$post(
+            process.env.apiUrl + "/auth/local",
+            {
+              identifier: values.userName,
+              password: values.password
+            }
+          );
+          if (authData.jwt && authData.user) {
+            localStorage.setItem("auth", JSON.stringify(authData));
+            this.$store.commit("auth/setAuthState", authData);
           }
-        );
-
-        if (authData.jwt && authData.user) {
-          localStorage.setItem("auth", JSON.stringify(authData));
-          this.$store.commit("auth/setAuthState", authData);
+        } catch (e) {
+          console.log(e.response);
+          this.$message.error(e.response.data.error);
         }
-        console.log("AuthData: ", authData);
+      } else {
+        console.log(err);
       }
     });
   }
 
   async handleLogout() {
-    console.log(1);
     await this.$store.commit("auth/removeAuthState");
-    console.log(4);
   }
 
   /**
@@ -59,7 +60,5 @@ class Index extends Vue {
     return this.$store.state.auth.loggedIn ? "Logged In" : "Guest";
   }
 
-  mounted() {
-    this.$message.info("Hello...");
-  }
+  mounted() {}
 }

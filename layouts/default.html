@@ -42,14 +42,13 @@
       NextCV ©2020
     </a-layout-footer>
   </a-layout>
-  <a-modal v-if="!$store.state.auth.loggedIn" v-model="visible" :closable="false" centered>
+  <a-modal v-if="!$store.state.auth.loggedIn" v-model="visible" :closable="false" :mask-closable="false" :mask="false" centered>
     <template slot="title">
       <div class="logo">
         <img :src="require('~/assets/logo.png')" />
       </div>
     </template>
     <template slot="footer">
-      <a-button @click="visible = false">Cancel</a-button>
       <a-button @click="handleSubmit">
         Sign in
       </a-button>
