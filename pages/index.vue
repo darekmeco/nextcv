@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container" v-if="loaded">
+  <div v-if="loaded" class="main-container">
     <a-row type="flex" justify="center" class="main-content">
       <a-col
         :xxl="{ span: 9 }"
@@ -45,10 +45,10 @@
               Experience
             </h2>
             <a-list
+              v-if="true"
               :data-source="mainData.experiences"
               item-layout="vertical"
               size="large"
-              v-if="true"
             >
               <a-list-item slot="renderItem" key="item.id" slot-scope="item">
                 <a-list-item-meta>
@@ -90,10 +90,10 @@
               Education
             </h2>
             <a-list
+              v-if="true"
               :data-source="mainData.educations"
               item-layout="vertical"
               size="large"
-              v-if="true"
             >
               <a-list-item slot="renderItem" key="item.id" slot-scope="item">
                 <a-list-item-meta :description="item.description">
@@ -142,7 +142,12 @@
         </a-row>
         <a-row>
           <a-col class="">
-            <skills title="Technologies"></skills>
+            <skills title="Current technologies" current></skills>
+          </a-col>
+        </a-row>
+        <a-row>
+          <a-col class="">
+            <skills title="Used technologies" :current="false"></skills>
           </a-col>
         </a-row>
         <a-row>
