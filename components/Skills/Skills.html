@@ -1,7 +1,7 @@
 <div>
   <h2><a-icon type="api" /> {{title}}</h2>
   <div class="technologies">
-  <a-tag v-for="(tag, index) in myData" :key="index" @click="redirectToUrl(tag)">{{
+  <a-tag v-for="(tag, index) in displayData" :key="index" @click="redirectToUrl(tag)">{{
         tag.name
       }}</a-tag>
   </div>
