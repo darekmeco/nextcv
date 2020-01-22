@@ -39,26 +39,27 @@
       </div>
     </a-layout-content>
     <a-layout-footer style="text-align: center">
-      <a-menu v-model="current" mode="horizontal" theme="dark">
-        <a-menu-item key="mail">
-          <a-icon type="mail" />Navigation One </a-menu-item>
-        <a-menu-item key="app" disabled>
-          <a-icon type="appstore" />Navigation Two </a-menu-item>
+      Some Great Technologies used in this poject
+      <a-menu mode="horizontal" theme="dark">
         <a-sub-menu>
           <span slot="title" class="submenu-title-wrapper">
-            <a-icon type="setting" />Navigation Three - Submenu</span>
-          <a-menu-item-group title="Item 1">
-            <a-menu-item key="setting:1">Option 1</a-menu-item>
-            <a-menu-item key="setting:2">Option 2</a-menu-item>
-          </a-menu-item-group>
-          <a-menu-item-group title="Item 2">
-            <a-menu-item key="setting:3">Option 3</a-menu-item>
-            <a-menu-item key="setting:4">Option 4</a-menu-item>
-          </a-menu-item-group>
+            <a-icon type="setting" />Back-end part
+          </span>
+          <a-menu-item @click="redirectToUrl('https://nodejs.org')" >NodeJs</a-menu-item>
+          <a-menu-item @click="redirectToUrl('https://strapi.io/')" >Strapi</a-menu-item>
+          <a-menu-item @click="redirectToUrl('https://mariadb.org/')">MariaDB</a-menu-item>
+          <a-menu-item @click="redirectToUrl('https://jwt.io/')">JWT</a-menu-item>
         </a-sub-menu>
-        <a-menu-item key="alipay">
-          <a href="https://antdv.com" target="_blank" rel="noopener noreferrer">Navigation Four - Link</a>
-        </a-menu-item>
+        <a-sub-menu>
+          <span slot="title" class="submenu-title-wrapper">
+            <a-icon type="setting" />Front-end part
+          </span>
+          <a-menu-item @click="redirectToUrl('https://babeljs.io/docs/en/learn/')">ECMAScript</a-menu-item>
+          <a-menu-item @click="redirectToUrl('https://vuejs.org/')">VueJS</a-menu-item>
+          <a-menu-item @click="redirectToUrl('https://www.antdv.com/docs/vue/introduce/')">Ant Design</a-menu-item>
+          <a-menu-item @click="redirectToUrl('https://nuxtjs.org/')">Nuxt</a-menu-item>
+          <a-menu-item @click="redirectToUrl('https://sass-lang.com/')">Sass</a-menu-item>
+        </a-sub-menu>
       </a-menu>
       NextCV ©2020
     </a-layout-footer>

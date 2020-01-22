@@ -37,17 +37,19 @@ class Index extends Vue {
             this.$store.commit("auth/setAuthState", authData);
           }
         } catch (e) {
-          console.log(e.response);
           this.$message.error(e.response.data.error);
         }
       } else {
-        console.log(err);
       }
     });
   }
 
   async handleLogout() {
     await this.$store.commit("auth/removeAuthState");
+  }
+
+  redirectToUrl(url) {
+    window.open(url, "_blank");
   }
 
   /**
