@@ -29,6 +29,11 @@ module.exports = {
         rel: "stylesheet",
         href:
           "https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&display=swap"
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Muli:400,300,600,700&display=swap"
       }
     ]
   },
@@ -39,7 +44,16 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ["ant-design-vue/dist/antd.css"],
+  css: [
+    {
+      src: "@/assets/less/colors.less",
+      lang: "less"
+    },
+    {
+      src: "ant-design-vue/dist/antd.less",
+      lang: "less"
+    }
+  ],
   /*
    ** Plugins to load before mounting the App
    */
@@ -93,6 +107,15 @@ module.exports = {
         use: "vue-template-loader",
         exclude: /app.template.html/
       });
+    },
+    loaders: {
+      less: {
+        javascriptEnabled: true,
+        modifyVars: {
+          "primary-color": "#20bd67",
+          "component-background": "#ffffff"
+        }
+      }
     }
   }
 };

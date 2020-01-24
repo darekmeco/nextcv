@@ -2,9 +2,9 @@ $dark: #1f2426;
 $gray: #4b5859;
 $blueGray: #293e41;
 $lightestBlue: #b4dad7;
-$lightBlue: #519ca4;
+$lightBlue: #20bd67;
 $blue: #2196a7;
-$darkBlue: #307982;
+$darkBlue: #11703c;
 $darkestBlue: #215961;
 $darkest-blue: #1a237e;
 $darker-blue: #283593;
@@ -23,7 +23,7 @@ $light-pink: #d81b60;
 body {
   background-color: white;
   color: $lightestBlue;
-  font-family: "Open Sans", Helvetica;
+  font-family: "Muli", Helvetica;
   font-weight: 300;
   background-image: url("~assets/b1.jpg");
   background-size: cover;
@@ -36,7 +36,7 @@ h4,
 h5,
 h6 {
   color: $lightestBlue;
-  font-family: "Open Sans", Helvetica;
+  font-family: "Muli", Helvetica;
   font-weight: 300;
 }
 
@@ -73,7 +73,7 @@ h3 {
 
     .left-sider {
       padding: 24px 24px 0;
-      background-color: darken($darkBlue, 20%);
+      background-color: darken($darkBlue, 0%);
 
       .ant-btn-background-ghost {
         color: $lightestBlue;
@@ -82,17 +82,17 @@ h3 {
       }
 
       .ant-btn-primary {
-        background-color: $blue;
-        ￼border-color: darken($blue, 10%);
+        background-color: $darkBlue;
+        ￼border-color: darken($darkBlue, 10%);
       }
 
       h2 {
         margin-top: 10px;
-        border-bottom: 1px solid lighten($dark, 10%);
+        border-bottom: 1px solid lighten($darkBlue, 10%);
       }
 
       .ant-list-split .ant-list-item {
-        border-bottom: 1px solid lighten($dark, 10%);
+        border-bottom: 1px solid lighten($darkBlue, 10%);
         padding-bottom: 8px;
       }
 
@@ -107,15 +107,15 @@ h3 {
 
     .right-sider {
       padding: 24px;
-      background-color: #f0f2f5;
+      background-color: lighten($lightBlue, 50%);
 
       .ant-btn-link {
-        color: $blue;
+        color: lighten($darkBlue, 0%);
       }
 
       .ant-btn-primary {
-        background-color: $blue;
-        ￼￼border-color: darken($blue, 10%);
+        background-color: $darkBlue;
+        ￼border-color: darken($darkBlue, 10%);
       }
 
       h2 {
@@ -181,6 +181,7 @@ h3 {
     color: $dark;
     border-radius: 0;
     font-weight: 400;
+    margin-bottom: 9px;
   }
 }
 
