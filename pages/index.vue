@@ -119,6 +119,7 @@
                         </a-button>
                         <span>
                           <a-button
+                            v-if="get(item, 'diploma.url', null)"
                             size="small"
                             icon="environment"
                             @click="openModal(get(item, 'diploma.url', null))"
