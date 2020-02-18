@@ -114,9 +114,19 @@
                           {{ item.start }}
                           - {{ item.end }}
                         </a-button>
-                        <a-button size="small" icon="calendar" ghost>
+                        <a-button size="small" icon="environment" ghost>
                           {{ item.place }}
                         </a-button>
+                        <span>
+                          <a-button
+                            size="small"
+                            icon="environment"
+                            @click="openModal(get(item, 'diploma.url', null))"
+                            ghost
+                          >
+                            Diploma
+                          </a-button>
+                        </span>
                       </a-col>
                     </a-row>
                   </div>
@@ -177,13 +187,16 @@
         </a-row>
       </a-col>
     </a-row>
+    <a-modal width="80%" title="" v-model="visible" @ok="visible = false">
+      <img :src="modalImage" />
+    </a-modal>
   </div>
 </template>
 <script>
 import { Component, Vue } from "vue-property-decorator";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import MarkdownIt from "markdown-it";
-
+import _get from "lodash/get";
 import TimeChart from "../components/TimeChart/TimeChart.js";
 import SocialLinks from "../components/SocialLinks/SocialLinks.js";
 import Languages from "../components/Languages/Languages.js";
@@ -222,6 +235,9 @@ class Index extends Vue {
   loaded = false;
   data() {
     return {
+      get: _get,
+      modalImage: null,
+      visible: false,
       md: null,
       listData,
       findMyData: [
@@ -232,6 +248,11 @@ class Index extends Vue {
         "Los Angeles battles huge wildfires."
       ]
     };
+  }
+
+  openModal(url) {
+    this.visible = true;
+    this.modalImage = url;
   }
 
   get mainData() {
